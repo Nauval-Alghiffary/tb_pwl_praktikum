@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/nauval', function () {
-    return view('percobaan.panggil');
-});
+Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])
+    ->name('admin.home')
+    ->middleware('is_admin');
 
 
 Auth::routes();
