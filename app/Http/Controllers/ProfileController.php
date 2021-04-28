@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $users = User::all();
-        return view('view_user', compact('user', 'users'));
+        return view('users', compact('user', 'users'));
     }
     public function add_user(Request $req)
     {

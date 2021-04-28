@@ -103,6 +103,27 @@ Route::post('admin/kelola_barang', [ProductController::class, 'add_product'])
     ->name('admin.product.submit')
     ->middleware('is_admin');
 
+//Route User
+Route::get('admin/user', [ProfileController::class, 'index'])
+->name('admin.user')
+->Middleware('is_admin');
+
+//route tambah
+Route::post('admin/user', [ProfileController::class, 'add_user'])
+->name('admin.user.submit')
+->middleware('is_admin');
+
+//route edit
+Route::patch('admin/user/update', [ProfileController::class, 'update_user'])
+->name('admin.user.update')
+->middleware('is_admin');
+Route::get('admin/ajaxadmin/dataUser/{id}', [ProfileController::class, 'getDataUser']);
+
+//route delete
+Route::delete('admin/user/delete', [ProfileController::class, 'destroy'])
+->name('admin.user.delete')
+->middleware('is_admin');
+
 
 Auth::routes();
 
