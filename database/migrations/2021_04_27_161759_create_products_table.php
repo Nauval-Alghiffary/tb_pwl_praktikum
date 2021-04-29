@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('qty');
             $table->foreignId('brands_id')->constrained('brands');
-            $table->unsignedBigInteger('categories_id')->unique();
+            $table->foreignId('categories_id')->constrained('categories');
             $table->string('photo');
             $table->timestamps();
 
