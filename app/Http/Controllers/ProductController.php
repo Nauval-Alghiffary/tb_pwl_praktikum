@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Categories;
 use App\Models\Brands;
+use App\Models\Product;
 
 
 
@@ -17,7 +17,9 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $barang = Product::all();
-        return view('products', compact('user', 'barang'));
+        $categories = Categories::all();
+        $brands = Brands::all();
+        return view('products', compact('user', 'barang', 'categories', 'brands'));
     }
 
     public function add_product(Request $req)
@@ -28,8 +30,7 @@ class ProductController extends Controller
         $barang->name = $req->get('name');
         $barang->brands_id = $req->get('brands_id');
         $barang->categories_id = $req->get('categories_id');
-        $barang->harga = $req->get('harga');
-        $barang->stok = $req->get('stok');
+        $barang->qty = $req->get('qty');
 
         if ($req->hasFile('photo')) {
             $extension = $req->file('photo')->extension();

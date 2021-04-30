@@ -37,27 +37,27 @@ Route::post('admin/kelola_barang', [ProductController::class, 'add_product'])
     ->name('admin.product.submit')
     ->middleware('is_admin');
 
-Route::get('admin/barangs', [barangController::class, 'index'])
-    ->name('admin.barangs')
+Route::get('admin/kelola_barang', [ProductController::class, 'index'])
+    ->name('admin.kelola_barang')
     ->middleware('is_admin');
 
-Route::post('admin/barangs', [barangController::class, 'store'])
-    ->name('admin.barang.submit')
+Route::post('admin/kelola_barang', [ProductController::class, 'add_product'])
+    ->name('admin.product.submit')
     ->middleware('is_admin');
-Route::patch('admin/barangs/update', [barangController::class, 'update'])
-    ->name('admin.barang.update')
+Route::patch('admin/kelola_barang/update', [ProductController::class, 'update'])
+    ->name('admin.product.update')
     ->middleware('is_admin');
 
-Route::get('admin/ajaxadmin/dataBuku/{id}', [barangController::class, 'getDataBuku']);
-Route::delete('admin/barangs/delete', [barangController::class, 'destroy'])
-    ->name('admin.barang.delete')
+Route::get('admin/ajaxadmin/dataBuku/{id}', [ProductController::class, 'getDataBuku']);
+Route::delete('admin/kelola_barang/delete', [ProductController::class, 'destroy'])
+    ->name('admin.product.delete')
     ->middleware('is_admin');
 
 //Route Categories
 Route::get('admin/kategori', [CategoriesController::class, 'index'])
     ->name('admin.kategori')
     ->middleware('is_admin');
-Route::post('admin/kategori', [CategoriesController::class, 'add_categories'])
+Route::post('admin/kategori/submit', [CategoriesController::class, 'add_categories'])
     ->name('admin.kategori.submit')
     ->middleware('is_admin');
 //route edit categories

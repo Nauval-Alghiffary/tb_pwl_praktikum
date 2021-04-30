@@ -43,10 +43,10 @@
                   @endif
                 </td>
                 <td>{{$key->name}}</td>
-                <td>{{$key->categories_id}}</td>
-                <td>{{$key->brands_id}}</td>
+                <td>{{$key->categories->name}}</td>
+                <td>{{$key->brands->name}}</td>
                 <td>{{$key->harga}}</td>
-                <td>{{$key->stok}}</td>
+                <td>{{$key->qty}}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" id="btn-edit-buku" class="btn" data-toggle="modal" data-target="#editBukuModal" data-id="{{ $key->id }}"><i class="fa fa-edit"></i></button>
@@ -78,11 +78,11 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="judul">Nama</label>
-                <input type="text" placeholder="Masukan Nama Barang" class="form-control" name="judul" id="judul" required />
+                <input type="text" placeholder="Masukan Nama Barang" class="form-control" name="name" id="name" required />
               </div>
               <div class="form-group col-md-6 ml-auto">
                 <label for="penulis">Jumlah</label>
-                <input type="number" min="0" class="form-control" placeholder="Masukan Jumlah" name="penulis" id="penulis" required />
+                <input type="number" min="0" class="form-control" placeholder="Masukan Jumlah" name="qty" id="qty" required />
               </div>
             </div>
           </div>
@@ -92,37 +92,31 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">Rp.</span>
               </div>
-              <input type="number" min="0" placeholder="Masukan Harga" class="form-control" aria-label="Amount (to the nearest dollar)">
+              <input type="number" min="0" placeholder="Masukan Harga" class="form-control" name="harga" id="harga" aria-label="Amount (to the nearest dollar)">
 
             </div>
           </div>
           <div class="form-group">
-            <label for="penerbit">Kategori</label>
-            <!-- <input type="text" class="form-control" name="penerbit" id="penerbit" required /> -->
-            <div class="input-group">
-              <select class="custom-select" placeholder="Masukan Kategori barang" id="inputGroupSelect04" aria-label="Example select with button addon">
-                <option selected>Pilih Kategori</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-              </select>
-
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="penerbit">Merek</label>
-            <!-- <input type="text" class="form-control" name="penerbit" id="penerbit" required /> -->
-            <div class="input-group">
-              <select class="custom-select" placeholder="Masukan Nama Brands" id="inputGroupSelect04" aria-label="Example select with button addon">
-                <option selected>Pilih Merek</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-              </select>
-
-            </div>
-          </div>
+                        <label for="name">Nama Kategori</label>
+                        <select class="form-control" placeholder="Masukan kategori barang" name="categories_id" id="categories_id" required />
+                          <option value="">-pilih-</option>
+                          @foreach ($categories as $item)
+                          <option value={{ $item->id }}>{{ $item->name }}</option> 
+                          @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Nama Merek</label>
+                        <select class="form-control" placeholder="Masukan kategori barang" name="brands_id" id="brands_id" required />
+                          <option value="">-pilih-</option>
+                          @foreach ($brands as $item)
+                          <option value={{ $item->id }}>{{ $item->name }}</option> 
+                          @endforeach
+                        </select>
+                    </div>
           <div class="form-group">
             <label for="cover">Photo Barang</label>
-            <input type="file" class="form-control" placeholder="Masukan Photo barang" name="cover" id="cover" />
+            <input type="file" class="form-control" placeholder="Masukan Photo barang" name="photo" id="photo" />
           </div>
 
       </div>
@@ -145,7 +139,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{ route('admin.barang.update') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.product.update') }}" enctype="multipart/form-data">
           @csrf
           @method('PATCH')
           <div class="row">
@@ -197,7 +191,7 @@
       </div>
       <div class="modal-body">
         Apakah anda yakin akan menghapus data <strong class="font-italic"></strong>?
-        <form method="post" action="{{ route('admin.barang.delete') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.product.delete') }}" enctype="multipart/form-data">
           @csrf
           @method('DELETE')
       </div>
