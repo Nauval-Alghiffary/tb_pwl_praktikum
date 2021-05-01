@@ -12,10 +12,11 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          
-          <div class="btn-group mb-5" role="group" aria-label="Basis Example">
-
-          </div>
+        <div style="text-align: center;">
+        <div class="btn-group" role="group" aria-label="Basis Example">
+            <a href="{{ route('admin.product.export') }}" class="btn btn-info" target="_blank">Export</a>
+        </div>
+        </div>
           <table id="table-data" class="table table-borderer display nowrap" style="width:100%">
             <thead>
               <tr>

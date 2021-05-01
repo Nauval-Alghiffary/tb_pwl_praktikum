@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Exports\ProductExport;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 
@@ -134,11 +135,15 @@ Route::delete('admin/user/delete', [ProfileController::class, 'destroy'])
 
 
 Route::get('admin/laporan/keluar', [App\Http\Controllers\ExportController::class, 'index'])
-    ->name('admin.product')
+    ->name('admin.product.export')
     ->middleware('is_admin');
 
 Route::get('admin/laporan/masuk', [App\Http\Controllers\ImportController::class, 'index'])
     ->name('admin.product')
+    ->middleware('is_admin');
+
+Route::get('admin/laporan/keluar/export', [App\Http\Controllers\AdminController::class, 'export'])
+    ->name('admin.product.export')
     ->middleware('is_admin');
 
 
