@@ -41,14 +41,11 @@ Route::get('admin/kelola_barang', [ProductController::class, 'index'])
     ->name('admin.kelola_barang')
     ->middleware('is_admin');
 
+Route::get('admin/ajaxadmin/dataProduct', [ProductController::class, 'getDataProduct']);
 Route::post('admin/kelola_barang', [ProductController::class, 'add_product'])
     ->name('admin.product.submit')
     ->middleware('is_admin');
-Route::patch('admin/kelola_barang/update', [ProductController::class, 'update'])
-    ->name('admin.product.update')
-    ->middleware('is_admin');
 
-Route::get('admin/ajaxadmin/dataProduct/{id}', [ProductController::class, 'getDataProduct']);
 Route::delete('admin/kelola_barang/delete', [ProductController::class, 'delete_product'])
     ->name('admin.product.delete')
     ->middleware('is_admin');

@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('brands_id')->constrained('brands');
             $table->foreignId('categories_id')->constrained('categories');
             $table->integer('harga');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
 
         });

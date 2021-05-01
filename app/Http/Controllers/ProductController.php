@@ -63,13 +63,13 @@ class ProductController extends Controller
 
         public function update_product(Request $req)
         {
-            $users = Product::find($req->get('id'));
+            $products = Product::find($req->get('id'));
     
-            $users->name = $req->get('name');
-            $users->categories_id = $req->get('categories_id');
-            $users->brands_id = $req->get('brands_id');
-            $users->harga = $req->get('harga');
-            $users->qty = $req->get('qty');
+            $products->name = $req->get('name');
+            $products->categories_id = $req->get('categories_id');
+            $products->brands_id = $req->get('brands_id');
+            $products->harga = $req->get('harga');
+            $products->qty = $req->get('qty');
     
             if ($req->hasFile('photo')) {
                 $extension = $req->file('photo')->extension();
@@ -83,10 +83,10 @@ class ProductController extends Controller
     
                 Storage::delete('public/photo_product/' . $req->get('old_photo'));
     
-                $users->photo = $filename;
+                $products->photo = $filename;
             }
     
-            $users->save();
+            $products->save();
     
             $notification = array(
                 'message' => 'Edit Data Berhasil',

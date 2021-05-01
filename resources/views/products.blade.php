@@ -49,7 +49,7 @@
                 <td>{{$key->qty}}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="btn-edit-product" class="btn" data-toggle="modal" data-target="#editproductModal" data-id="{{ $key->id }}"><i class="fa fa-edit"></i></button>
+                    <button type="button" id="btn-edit-product" class="btn" data-toggle="modal" data-target="#editProductModal" data-id="{{ $key->id }}" data-photo="{{$key->photo}}" data-name="{{$key->name}}" data-categories_id="{{$key->categories->id}}" data-brands_id="{{$key->brands->id}}" data-harga="{{$key->harga}}" data-qty="{{$key->qty}}"><i class="fa fa-edit"></i></button>
                     <button type="button" id="btn-delete-product" class="btn" data-toggle="modal" data-target="#deleteProductModal" data-id="{{ $key->id }}" data-photo="{{ $key->photo }}"><i class="fa fa-trash"></i></button>
                   </div>
                 </td>
@@ -132,7 +132,7 @@
 <!-- Modal Tambah User  -->
 
 <!-- Modal Edit User -->
-<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -148,31 +148,33 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Nama</label>
+                                <label for="name">Nama Barang</label>
                                 <input type="text" class="form-control" name="name" id="edit-name" required />
                             </div>
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" name="username" id="edit-username" required />
+                            <select class="form-control" placeholder="kategori barang" name="categories_id" id="edit-categories_id" required />
+                              <option value="">-pilih-</option>
+                                @foreach ($categories as $item)
+                                <option value={{ $item->id }}>{{ $item->name }}</option> 
+                                @endforeach
+                              </select>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" name="email" id="edit-email" required />
+                            <select class="form-control" placeholder="Merek barang" name="brands_id" id="edit-brands_id" required />
+                              <option value="">-pilih-</option>
+                                @foreach ($brands as $item)
+                                <option value={{ $item->id }}>{{ $item->name }}</option> 
+                                @endforeach
+                              </select>
                             </div>
                             <div class="form-group">
-                                <label for="password">Password lama</label>
-                                <input min="0" type="text" class="form-control" name="password" id="edit-password" required />
+                                <label for="harga">Harga</label>
+                                <input min="0" type="text" class="form-control" name="harga" id="edit-harga" required />
                             </div>
                             <div class="form-group">
-                                <label for="roles_id">Role</label>
-                                <div class="input-group">
-                                    <select class="custom-select" name="roles_id" id="edit-roles_id" aria-label="Example select with button addon">
-                                        <option selected>Pilih...</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">User</option>
-                                    </select>
-
-                                </div>
+                                <label for="qty">Stok</label>
+                                <input min="0" type="text" class="form-control" name="qty" id="edit-qty" required />
+                            </div>
                                 <!-- <div class="input-group">
                                     <input type="text" name="roles_id" id="edit-roles_id" class="form-control" aria-label="Text input with dropdown button">
                                     <div class="input-group-append">
@@ -193,7 +195,6 @@
                             </div>
                         </div>
                     </div>
-            </div>
             <div class="modal-footer">
                 <input type="hidden" name="id" id="edit-id" />
                 <input type="hidden" name="old_photo" id="edit-old-photo" />
@@ -256,7 +257,7 @@ $(document).on('click', '#btn-edit-product', function() {
     let brands_id = $(this).data('brands_id');
     let harga = $(this).data('harga');
     let qty = $(this).data('qty');
-    let photo = $(this).data('photo');
+    let photo = $(this).data('old_photo');
 
     $('#image-area').empty();
     $('#edit-name').val(name);
@@ -265,7 +266,7 @@ $(document).on('click', '#btn-edit-product', function() {
     $('#edit-harga').val(harga);
     $('#edit-qty').val(qty);
     $('#edit-id').val(id);
-    $('#edit-old-photo').val(photo);
+    $('#edit-photo').val(photo);
     if (photo !== null) {
         $('#image-area').append(
             "<img src='" + baseurl + "/storage/photo_product/" + photo + "' width='200px'/>"
@@ -298,13 +299,8 @@ $(document).on('click', '#btn-edit-product', function() {
     //         }
     //     },
     // });
-});
-
   });
-</script>
-@stop
-@section('js')
-<script>
+});
 
 </script>
 @stop
