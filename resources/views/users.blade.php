@@ -10,10 +10,6 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    {{ __('User Setting') }}
-
-                </div>
                 <div class="card-body">
                     <button class="btn btn-primary float-left mr-3" data-toggle="modal" data-target="#modalTambahUser"><i class="fa fa-plus"></i> Tambah User</button>
                     <div class="btn-group mb-5" role="group" aria-label="Basis Example">

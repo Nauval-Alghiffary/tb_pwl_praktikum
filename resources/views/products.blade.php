@@ -3,7 +3,7 @@
 @section('title', 'Product PAGE')
 
 @section('content_header')
-<h1 class="text-center text-bold">BARANG</h1>
+<h1 class="text-center text-bold">KELOLA BARANG</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <button class="btn btn-primary float-left mr-3" data-toggle="modal" data-target="#tambahData"><i class="fa fa-plus"></i>Tambah Barang</button>
+          <button class="btn btn-primary float-left mr-3" data-toggle="modal" data-target="#tambahData"><i class="fa fa-plus"></i> Tambah Barang</button>
 
           <div class="btn-group mb-5" role="group" aria-label="Basis Example">
 
