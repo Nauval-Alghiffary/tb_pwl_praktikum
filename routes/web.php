@@ -146,6 +146,10 @@ Route::get('admin/laporan/keluar/export', [App\Http\Controllers\AdminController:
     ->name('admin.product.export')
     ->middleware('is_admin');
 
+Route::post('admin/laporan/masuk/import', [AdminController::class, 'import'])
+    ->name('admin.product.import')
+    ->middleware('is_admin');
+
 
 Auth::routes();
 

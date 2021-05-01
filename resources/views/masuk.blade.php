@@ -12,10 +12,11 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          
-          <div class="btn-group mb-5" role="group" aria-label="Basis Example">
-
-          </div>
+        <div style="text-align: center;">
+        <div class="btn-group" role="group" aria-label="Basis Example">
+            <a class="btn btn-info" style="color: white;" data-toggle="modal" data-target="#importDataModal">Import</a>
+        </div>
+        </div>
           <table id="table-data" class="table table-borderer display nowrap" style="width:100%">
             <thead>
               <tr>
@@ -54,6 +55,28 @@
       </div>
     </div>
   </div>
+</div>
+<!-- MODAL IMPORT DATA FORM -->
+<div class="modal fade" id="importDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden='true'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal=tittle" id="exampleModalLabel">Import data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+    <div class="modal-body">
+        <form method="post" action="{{route('admin.product.import')}}" enctype="multipart/form-data>">
+            @csrf
+    <div class="form-group">
+        <label for="cover">Upload File</label><input type="file" class="form-control" name="file"/>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">batal</button><button type="submit" class="btn btn-primary">Import Data</button></form>
+    </div>
+</div>
 </div>
 
 
