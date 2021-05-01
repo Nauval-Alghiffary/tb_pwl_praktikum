@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('qty');
             $table->foreignId('brands_id')->constrained('brands');
             $table->foreignId('categories_id')->constrained('categories');
+            $table->integer('harga');
             $table->string('photo');
             $table->timestamps();
 

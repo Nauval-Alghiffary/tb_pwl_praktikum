@@ -48,8 +48,8 @@ Route::patch('admin/kelola_barang/update', [ProductController::class, 'update'])
     ->name('admin.product.update')
     ->middleware('is_admin');
 
-Route::get('admin/ajaxadmin/dataBuku/{id}', [ProductController::class, 'getDataBuku']);
-Route::delete('admin/kelola_barang/delete', [ProductController::class, 'destroy'])
+Route::get('admin/ajaxadmin/dataProduct/{id}', [ProductController::class, 'getDataProduct']);
+Route::delete('admin/kelola_barang/delete', [ProductController::class, 'delete_product'])
     ->name('admin.product.delete')
     ->middleware('is_admin');
 
@@ -102,6 +102,17 @@ Route::get('admin/kelola_barang', [App\Http\Controllers\ProductController::class
 Route::post('admin/kelola_barang', [ProductController::class, 'add_product'])
     ->name('admin.product.submit')
     ->middleware('is_admin');
+//route edit categories
+Route::patch('admin/kelola_barang/update', [ProductController::class, 'update_product'])
+    ->name('admin.product.update')
+    ->middleware('is_admin');
+Route::get('admin/ajaxadmin/dataCategories/{id}', [ProductController::class, 'getDataProduct']);
+
+//route delete categories
+Route::delete('admin/kelola_barang/delete', [ProductController::class, 'delete_product'])
+    ->name('admin.product.delete')
+    ->middleware('is_admin');
+
 
 //Route User
 Route::get('admin/user', [ProfileController::class, 'index'])

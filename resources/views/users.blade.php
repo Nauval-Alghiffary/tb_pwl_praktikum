@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'BrandS')
+@section('title', 'USERS')
 
 @section('content_header')
 <h1 class="text-center text-bold">USER</h1>
@@ -45,7 +45,7 @@
                                 <td>{{$pengguna->name}}</td>
                                 <td>{{$pengguna->email}}</td>
                                 <td>{{$pengguna->password}}</td>
-                                <td>{{$pengguna->roles_id}}</td>
+                                <td>{{$pengguna->roles->name}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" id="btn-edit-user" class="btn" data-toggle="modal" data-target="#modalEdit" data-id="{{ $pengguna->id }}" data-photo="{{$pengguna->photo}}" data-name="{{$pengguna->name}}" data-username="{{$pengguna->username}}" data-email="{{$pengguna->email}}" data-password="{{$pengguna->password}}" data-roles_id="{{$pengguna->roles_id}}"><i class="fa fa-edit"></i></button>

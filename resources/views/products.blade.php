@@ -49,8 +49,8 @@
                 <td>{{$key->qty}}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="btn-edit-buku" class="btn" data-toggle="modal" data-target="#editBukuModal" data-id="{{ $key->id }}"><i class="fa fa-edit"></i></button>
-                    <button type="button" id="btn-delete-buku" class="btn" data-toggle="modal" data-target="#deleteBukuModal" data-id="{{ $key->id }}" data-photo="{{ $key->photo }}"><i class="fa fa-trash"></i></button>
+                    <button type="button" id="btn-edit-product" class="btn" data-toggle="modal" data-target="#editproductModal" data-id="{{ $key->id }}"><i class="fa fa-edit"></i></button>
+                    <button type="button" id="btn-delete-product" class="btn" data-toggle="modal" data-target="#deleteProductModal" data-id="{{ $key->id }}" data-photo="{{ $key->photo }}"><i class="fa fa-trash"></i></button>
                   </div>
                 </td>
               </tr>
@@ -129,62 +129,89 @@
   </div>
 </div>
 
-<div class="modal fade" id="editBukuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit barang</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="{{ route('admin.product.update') }}" enctype="multipart/form-data">
-          @csrf
-          @method('PATCH')
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="edit-judul">Title</label>
-                <input type="text" class="form-control" name="judul" id="edit-judul" required />
-              </div>
-              <div class="form-group">
-                <label for="edit-penulis">Author</label>
-                <input type="text" class="form-control" name="penulis" id="edit-penulis" required />
-              </div>
-              <div class="form-group">
-                <label for="edit-tahun">Year</label>
-                <input min="1" type="number" id="datepicker" class="form-control" name="tahun" id="edit-tahun" required />
-              </div>
-              <div class="form-group">
-                <label for="edit-penerbit">Publisher</label>
-                <input type="text" class="form-control" name="penerbit" id="edit-penerbit" required />
-              </div>
+<!-- Modal Tambah User  -->
+
+<!-- Modal Edit User -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Porduct</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="col-md-6">
-              <div class="form-group" id="image-area"></div>
-              <div class="form-group">
-                <label for="edit-cover">Cover</label>
-                <input type="file" class="form-control" name="cover" id="edit-cover" />
-              </div>
+            <div class="modal-body">
+                <form method="post" action="{{ route('admin.product.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PATCH')
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Nama</label>
+                                <input type="text" class="form-control" name="name" id="edit-name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username" id="edit-username" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" id="edit-email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password lama</label>
+                                <input min="0" type="text" class="form-control" name="password" id="edit-password" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="roles_id">Role</label>
+                                <div class="input-group">
+                                    <select class="custom-select" name="roles_id" id="edit-roles_id" aria-label="Example select with button addon">
+                                        <option selected>Pilih...</option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">User</option>
+                                    </select>
+
+                                </div>
+                                <!-- <div class="input-group">
+                                    <input type="text" name="roles_id" id="edit-roles_id" class="form-control" aria-label="Text input with dropdown button">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih</button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#roles_id" aria-valuetext="Admin">Admin</a>
+                                            <a class="dropdown-item" href="#roles_id" aria-valuetext="User">User</a>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" id="image-area"></div>
+                            <div class="form-group">
+                                <label for="edit-photo">photo</label>
+                                <input type="file" class="form-control" name="photo" id="edit-photo" />
+                            </div>
+                        </div>
+                    </div>
             </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <input type="hidden" name="id" id="edit-id" />
-        <input type="hidden" name="old_cover" id="edit-old-cover" />
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success">Update</button>
-        </form>
-      </div>
+            <div class="modal-footer">
+                <input type="hidden" name="id" id="edit-id" />
+                <input type="hidden" name="old_photo" id="edit-old-photo" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Update</button>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-<div class="modal fade" id="deleteBukuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Edit User -->
+
+<!-- Modal Delete User -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Buku</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Hapus Data product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -197,7 +224,7 @@
       </div>
       <div class="modal-footer">
         <input type="hidden" name="id" id="delete-id" value="" />
-        <input type="hidden" name="old_cover" id="delete-old-cover" />
+        <input type="hidden" name="old_photo" id="delete-old-photo"/>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-danger">Hapus</button>
         </form>
@@ -214,48 +241,64 @@
 @section('js')
 <script>
   $(function() {
-    $("#datepicker").datepicker({
-      format: "yyyy", // Notice the Extra space at the beginning
-      viewMode: "years",
-      minViewMode: "years"
-    });
-    $(document).on('click', '#btn-delete-buku', function() {
+    $(document).on('click', '#btn-delete-product', function() {
       let id = $(this).data('id');
-      let cover = $(this).data('cover');
+      let photo = $(this).data('old_photo');
       $('#delete-id').val(id);
-      $('#delete-old-cover').val(cover);
-      console.log("hallo");
+      $('#delete-old-photo').val(photo);
     });
 
 
+$(document).on('click', '#btn-edit-product', function() {
+    let id = $(this).data('id');
+    let name = $(this).data('name');
+    let categories_id = $(this).data('categories_id');
+    let brands_id = $(this).data('brands_id');
+    let harga = $(this).data('harga');
+    let qty = $(this).data('qty');
+    let photo = $(this).data('photo');
 
-    $(document).on('click', '#btn-edit-buku', function() {
-      let id = $(this).data('id');
+    $('#image-area').empty();
+    $('#edit-name').val(name);
+    $('#edit-categories_id').val(categories_id);
+    $('#edit-brands_id').val(brands_id);
+    $('#edit-harga').val(harga);
+    $('#edit-qty').val(qty);
+    $('#edit-id').val(id);
+    $('#edit-old-photo').val(photo);
+    if (photo !== null) {
+        $('#image-area').append(
+            "<img src='" + baseurl + "/storage/photo_product/" + photo + "' width='200px'/>"
+        );
+    } else {
+        $('#image-area').append('[Gambar tidak tersedia]');
+    }
 
-      $('#image-area').empty();
 
-      $.ajax({
-        type: "get",
-        url: baseurl + '/admin/ajaxadmin/dataBuku/' + id,
-        dataType: 'json',
-        success: function(res) {
-          $('#edit-judul').val(res.judul);
-          $('#edit-penerbit').val(res.penerbit);
-          $('#edit-penulis').val(res.penulis);
-          $('#edit-tahun').val(res.tahun);
-          $('#edit-id').val(res.id);
-          $('#edit-old-cover').val(res.cover);
+    // $.ajax({
+    //     type: "get",
+    //     url: baseurl + '/admin/ajaxadmin/dataUser/' + id,
+    //     dataType: 'json',
+    //     success: function(res) {
+    //         console.log(res);
+    //         $('#edit-name').val(res.name);
+    //         $('#edit-username').val(res.username);
+    //         $('#edit-email').val(res.email);
+    //         $('#edit-password').val(res.password);
+    //         $('#edit-roles_id').val(res.roles_id);
+    //         $('#edit-id').val(res.id);
+    //         $('#edit-old-photo').val(res.photo);
 
-          if (res.cover !== null) {
-            $('#image-area').append(
-              "<img src='" + baseurl + "/storage/cover_buku/" + res.cover + "' width='200px'/>"
-            );
-          } else {
-            $('#image-area').append('[Gambar tidak tersedia]');
-          }
-        },
-      });
-    });
+    //         if (res.photo !== null) {
+    //             $('#image-area').append(
+    //                 "<img src='" + baseurl + "/storage/photo_user/" + res.photo + "' width='200px'/>"
+    //             );
+    //         } else {
+    //             $('#image-area').append('[Gambar tidak tersedia]');
+    //         }
+    //     },
+    // });
+});
 
   });
 </script>
