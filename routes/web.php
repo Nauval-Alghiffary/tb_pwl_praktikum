@@ -133,6 +133,15 @@ Route::delete('admin/user/delete', [ProfileController::class, 'destroy'])
 ->middleware('is_admin');
 
 
+Route::get('admin/laporan/keluar', [App\Http\Controllers\ExportController::class, 'index'])
+    ->name('admin.product')
+    ->middleware('is_admin');
+
+Route::get('admin/laporan/masuk', [App\Http\Controllers\ImportController::class, 'index'])
+    ->name('admin.product')
+    ->middleware('is_admin');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
